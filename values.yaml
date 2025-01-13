@@ -1,0 +1,14 @@
+namespace: <namespace-name>
+
+frontend:
+  repository:
+    image: <image-name>:<image-tag>
+  replicas: 1
+  target:
+    port: <container-target-port>
+  service:
+    port: <frontend-service-port>
+  ingress:
+    host: <domain-name>
+    annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /
