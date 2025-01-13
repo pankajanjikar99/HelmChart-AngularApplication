@@ -1,0 +1,6 @@
+apiVersion: v2
+name: angular-chart
+description: Helm chart for deploying Angular
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
