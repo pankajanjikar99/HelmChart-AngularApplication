@@ -1,14 +1,15 @@
-namespace: <namespace-name>
+namespace: "angular-poc"
 
 frontend:
+  apiUrl: "http://localhost:8080"
   repository:
-    image: <image-name>:<image-tag>
+    image: <+artifact.image>
   replicas: 1
   target:
-    port: <container-target-port>
+    port: 80
   service:
-    port: <frontend-service-port>
+    port: 80
   ingress:
-    host: <domain-name>
+    host: "angular.local"
     annotations:
-      nginx.ingress.kubernetes.io/rewrite-target: /
+      kubernetes.io/ingress.class: nginx

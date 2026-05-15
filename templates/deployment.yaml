@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
-  namespace: {{ .Values.namespace }}
+  namespace: "{{ .Values.namespace }}"
 spec:
   replicas: {{ .Values.frontend.replicas }}
   selector:
@@ -15,6 +15,14 @@ spec:
     spec:
       containers:
         - name: angular-frontend
-          image: {{ .Values.frontend.repository.image }}
+          image: "{{ .Values.frontend.repository.image }}"
           ports:
             - containerPort: {{ .Values.frontend.target.port }}
+          volumeMounts:
+            - name: config-volume
+              mountPath: /usr/share/nginx/html/assets/config.json
+              subPath: config.json
+      volumes:
+        - name: config-volume
+          configMap:
+            name: "{{ .Release.Name }}-config"

@@ -1,13 +1,14 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.namespace }}-ingress
-  namespace: {{ .Values.namespace }}
+  name: "{{ .Values.namespace }}-ingress" # Added quotes
+  namespace: "{{ .Values.namespace }}"    # Added quotes
   annotations:
+    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: {{ .Values.frontend.ingress.host }}
+    - host: "{{ .Values.frontend.ingress.host }}" # Added quotes
       http:
         paths:
           - path: /
